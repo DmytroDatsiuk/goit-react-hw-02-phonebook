@@ -48,8 +48,20 @@ export class App extends Component {
   changeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
   };
+  componentDidMount() {
+    console.log('App componentDidMount');
+    const contacts = localStorage.getItem('contacts');
+    const parseContacts = JSON.parse(contacts);
+
+    this.setState({ contacts: parseContacts });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('App componentDidUpdate');
+  }
 
   render() {
+    console.log('App render');
     const { contacts, filter } = this.state;
 
     const normalizeFilter = filter.toLowerCase();
