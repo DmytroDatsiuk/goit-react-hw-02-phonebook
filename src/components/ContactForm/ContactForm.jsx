@@ -28,11 +28,14 @@ export const ContactForm = ({ onSave }) => {
       initialValues={{ name: '', number: '' }}
       validationSchema={Schema}
       onSubmit={(values, { resetForm }) => {
-        onSave({
-          ...values,
-          id: nanoid(),
-        });
-        resetForm();
+        if (
+          onSave({
+            ...values,
+            id: nanoid(),
+          })
+        ) {
+          resetForm();
+        }
       }}
     >
       <Form autoComplete="off">

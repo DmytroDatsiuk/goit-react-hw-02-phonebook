@@ -27,12 +27,12 @@ export class App extends Component {
     if (check) {
       return alert(`${newContact.name}: is already in contacts`);
     }
-
     this.setState(prevState => {
       return {
         contacts: [...prevState.contacts, newContact],
       };
     });
+    return true;
   };
 
   deleteContact = contactId => {
@@ -61,7 +61,7 @@ export class App extends Component {
       <Layout>
         <GlobalStyle />
         <h1>Phonebook</h1>
-        <ContactForm onSave={this.addContact} />
+        <ContactForm onSave={this.addContact} onCheck={this.checkContact} />
         <h2>Contacts</h2>
         <Filter filter={filter} onChange={this.changeFilter} />
         <ContactList contacts={visibleContacts} onDelete={this.deleteContact} />
